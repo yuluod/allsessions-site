@@ -17,9 +17,9 @@ const AGENTS = [
     },
     cards: {
       zh: [
-        ["09:41", "把会话存储迁移到 rusqlite", 47, "~/work/allsessions"],
-        ["9月15日", "修复 GNOME 托盘图标回归", 19, "~/work/allsessions"],
-        ["9月14日", "给会话目录监听加防抖", 33, "~/work/allsessions"],
+        ["09:41", "把 session store 迁到 rusqlite", 47, "~/work/allsessions"],
+        ["9月15日", "GNOME 上托盘图标不见了", 19, "~/work/allsessions"],
+        ["9月14日", "目录监听要不要加防抖", 33, "~/work/allsessions"],
       ],
       en: [
         ["09:41", "migrate session store to rusqlite", 47, "~/work/allsessions"],
@@ -65,9 +65,9 @@ const AGENTS = [
     },
     cards: {
       zh: [
-        ["10:07", "梳理 token 刷新链路", 61, "~/work/api-gateway"],
-        ["9月15日", "把会话视图拆成双栏", 28, "~/work/allsessions"],
-        ["9月8日", "遇到 429 用指数退避重试", 12, "~/work/api-gateway"],
+        ["10:07", "token 刷新的链路帮我理一下", 61, "~/work/api-gateway"],
+        ["9月15日", "conversation view 拆成两栏", 28, "~/work/allsessions"],
+        ["9月8日", "429 的时候做退避重试", 12, "~/work/api-gateway"],
       ],
       en: [
         ["10:07", "audit token refresh path", 61, "~/work/api-gateway"],
@@ -89,8 +89,8 @@ const AGENTS = [
     },
     cards: {
       zh: [
-        ["08:12", "起草 0.1.3 的发布说明", 9, "~/work/allsessions"],
-        ["8月17日", "对比 trigram 与 fts5 的召回率", 22, "~/research/notes"],
+        ["08:12", "0.1.3 的 release notes 起个草", 9, "~/work/allsessions"],
+        ["8月17日", "trigram 和 fts5 哪个召回好", 22, "~/research/notes"],
       ],
       en: [
         ["08:12", "draft release notes for 0.1.3", 9, "~/work/allsessions"],
@@ -111,8 +111,8 @@ const AGENTS = [
     },
     cards: {
       zh: [
-        ["11:56", "从 v3 树重建分支顶端", 40, "~/work/pi-sessions"],
-        ["8月29日", "总结超长的重构线程", 17, "~/work/pi-sessions"],
+        ["11:56", "从 v3 树把分支顶端重建出来", 40, "~/work/pi-sessions"],
+        ["8月29日", "这条超长重构线帮我总结下", 17, "~/work/pi-sessions"],
       ],
       en: [
         ["11:56", "rebuild branch tip from v3 tree", 40, "~/work/pi-sessions"],
@@ -133,8 +133,8 @@ const AGENTS = [
     },
     cards: {
       zh: [
-        ["9月2日", "命名导出格式选项", 15, "~/work/allsessions"],
-        ["8月10日", "澄清脱敏开关的语义", 21, "~/work/allsessions"],
+        ["9月2日", "导出格式想加个选项", 15, "~/work/allsessions"],
+        ["8月10日", "redact 开关的语义定一下", 21, "~/work/allsessions"],
       ],
       en: [
         ["Sep 02", "name the export format options", 15, "~/work/allsessions"],
@@ -155,8 +155,8 @@ const AGENTS = [
     },
     cards: {
       zh: [
-        ["9月8日", "规范化 opencode 工具行", 26, "~/work/allsessions"],
-        ["8月10日", "WAL checkpoint 轮询间隔", 8, "~/work/allsessions"],
+        ["9月8日", "opencode 的 tool 行归一化", 26, "~/work/allsessions"],
+        ["8月10日", "WAL checkpoint 多久轮询一次", 8, "~/work/allsessions"],
       ],
       en: [
         ["Sep 08", "normalize opencode tool rows", 26, "~/work/allsessions"],
@@ -176,7 +176,7 @@ const AGENTS = [
       en: "SQLite; messages, thinking, tools, compaction markers, raw events, search, WAL live refresh; subagents excluded",
     },
     cards: {
-      zh: [["9月14日", "把子代理行排除出索引", 11, "~/work/allsessions"]],
+      zh: [["9月14日", "索引里排除子代理的行", 11, "~/work/allsessions"]],
       en: [["Sep 14", "exclude subagent rows from index", 11, "~/work/allsessions"]],
     },
   },
@@ -193,8 +193,8 @@ const AGENTS = [
     },
     cards: {
       zh: [
-        ["09:02", "调整侧栏密度选项", 14, "~/work/allsessions"],
-        ["8月17日", "修复 composer 的 diff 渲染", 30, "~/work/app"],
+        ["09:02", "侧栏密度想调密一点", 14, "~/work/allsessions"],
+        ["8月17日", "composer 的 diff 渲染坏了", 30, "~/work/app"],
       ],
       en: [
         ["09:02", "tune sidebar density options", 14, "~/work/allsessions"],
@@ -214,7 +214,7 @@ const AGENTS = [
       en: "Desktop acp-messages & CLI sessions.db; browse, search, stats, export, local removal",
     },
     cards: {
-      zh: [["9月15日", "评审仓库初始化 playbook 草稿", 18, "~/work/notes"]],
+      zh: [["9月15日", "仓库初始化的 playbook 看一版", 18, "~/work/notes"]],
       en: [["Sep 15", "review playbook draft for repo setup", 18, "~/work/notes"]],
     },
   },
@@ -231,8 +231,8 @@ const AGENTS = [
     },
     cards: {
       zh: [
-        ["10:33", "解释 workspace.yaml 的结构", 7, "~/work/allsessions"],
-        ["8月23日", "从 cli 恢复上一次会话", 13, "~/work/app"],
+        ["10:33", "workspace.yaml 的结构讲一下", 7, "~/work/allsessions"],
+        ["8月23日", "从 cli 接着上次的会话", 13, "~/work/app"],
       ],
       en: [
         ["10:33", "explain workspace.yaml schema", 7, "~/work/allsessions"],
@@ -297,7 +297,7 @@ const FEATURES = [
       hint: "FULL-TEXT INDEX",
       items: [
         "标题、路径、标签、备注、消息正文一起搜",
-        "多词 AND 匹配；长词走本地三角索引",
+        "多词 AND 匹配；长词走本地 trigram 索引",
         "按相关度或最近活跃排序，命中片段直达上下文",
         "会话内高亮，支持上一个 / 下一个跳转",
       ],
@@ -391,10 +391,10 @@ const I18N = {
     "nav.local": "本地优先",
     "nav.download": "下载",
     "nav.github": "GitHub",
-    "hero.title": "{n} 个来源，一张工作台。",
+    "hero.title": "{n} 个来源，一个索引。",
     "hero.sub":
-      "{agents}——散落在本机各处的会话，收进同一个桌面应用里浏览、搜索、整理、导出。全程本地，不开端口，不上云。",
-    "hero.cta": "取出卡片 · 下载",
+      "{agents}：每个 Agent 都把会话写进自己的目录，格式互不相同。AllSessions 把它们统统读出来，放进同一个桌面应用。翻旧会话、搜全文、打标签、做导出，都在本机完成，不开端口，不上云。",
+    "hero.cta": "下载 AllSessions",
     "hero.secondary": "GitHub 仓库",
     "hero.detect": "已识别你的系统：",
     "tray.search": "搜索…",
@@ -402,15 +402,16 @@ const I18N = {
     "tray.msgs": "{n} 条消息",
     "stamp.readonly": "只读 READ-ONLY",
     "sources.title": "来源索引",
-    "sources.intro": "{n} 个来源，{n} 张索引卡。路径即事实——写在哪就从哪读；只读来源一律盖章。",
+    "sources.intro":
+      "下面 {n} 张卡，一张对一个来源：读哪个目录、能解析出什么，照实写。盖了只读章的，原始数据一个字节都不会动。",
     "sources.note":
       "只读来源的原始数据永不被修改；「本地移除」只在 AllSessions 内生效，删除原件请回到对应 Agent。",
     "features.title": "功能抽屉",
     "local.title": "本地优先",
-    "local.heading": "卡片不出柜子。",
+    "local.heading": "数据不出这台机器。",
     "local.stamp": "LOCAL ONLY",
-    "local.f1": "解析、搜索、缓存全部由 Rust 在本机完成；不开本地 HTTP 端口，前后端只走 IPC。",
-    "local.f2": "全文索引是 SQLite 三角索引，整棵索引树都在你的磁盘上。",
+    "local.f1": "解析、搜索、缓存全部由本机的 Rust 完成，不开放本地端口；界面与核心之间的通信也不经过网络。",
+    "local.f2": "全文检索用本地 SQLite 的 trigram 索引，整个索引都在你自己的磁盘上。",
     "local.f3": "永久删除原始记录前先自动本地备份；只读来源的原始数据绝不被修改。",
     "local.f4": "导出可选脱敏；诊断信息可复制且不含会话内容与本地路径。",
     "local.config": "配置",
@@ -432,7 +433,6 @@ const I18N = {
     "footer.repository": "仓库",
     "footer.issues": "议题",
     "footer.changelog": "更新日志",
-    "footer.made": "本地手工打造",
     "tray.cards": "{n} 张卡",
     "platform.mac": "macOS",
     "platform.windows": "Windows",
@@ -444,10 +444,10 @@ const I18N = {
     "nav.local": "Local-first",
     "nav.download": "Download",
     "nav.github": "GitHub",
-    "hero.title": "Every agent. One workbench.",
+    "hero.title": "Every agent. One index.",
     "hero.sub":
-      "{agents}: sessions scattered across your machine, gathered into one desktop app to browse, search, organize, and export. Entirely local: no port, no cloud.",
-    "hero.cta": "Pull the card · Download",
+      "{agents}: each agent writes its sessions to a different directory, in a different format. AllSessions reads them all into one desktop app. Browse, search, tag, and export — all on your machine, no port, no cloud.",
+    "hero.cta": "Download AllSessions",
     "hero.secondary": "GitHub repository",
     "hero.detect": "Detected for you:",
     "tray.search": "Search…",
@@ -456,14 +456,14 @@ const I18N = {
     "stamp.readonly": "READ-ONLY",
     "sources.title": "Source index",
     "sources.intro":
-      "{n} sources, {n} index cards. Paths are facts: records are read where they are written; read-only sources carry the stamp.",
+      "The {n} cards below cover every source: the directory read and what gets parsed, exactly as shipped. Sources stamped read-only are never modified.",
     "sources.note":
       "Read-only sources are never modified on disk; local removal applies inside AllSessions only — delete originals in the agent itself.",
     "features.title": "Feature drawers",
     "local.title": "Local-first",
-    "local.heading": "The cards never leave the cabinet.",
+    "local.heading": "Your data never leaves this machine.",
     "local.stamp": "LOCAL ONLY",
-    "local.f1": "Parsing, search, and caching all run in Rust on your machine; no local HTTP port, IPC only.",
+    "local.f1": "Parsing, search, and caching all run in Rust on your machine; no local port is opened, and the UI never communicates over the network.",
     "local.f2": "Full-text search is a local SQLite trigram index — the whole index lives on your disk.",
     "local.f3": "A local backup precedes any permanent deletion; read-only sources are never modified.",
     "local.f4": "Optional export redaction; copyable diagnostics contain no session content or paths.",
@@ -488,7 +488,6 @@ const I18N = {
     "footer.repository": "Repository",
     "footer.issues": "Issues",
     "footer.changelog": "Changelog",
-    "footer.made": "Made locally",
     "tray.cards": "{n} cards",
     "platform.mac": "macOS",
     "platform.windows": "Windows",
@@ -521,8 +520,8 @@ function applyI18n() {
     );
   document.title =
     state.lang === "zh"
-      ? "AllSessions — 本地 AI 会话工作台"
-      : "AllSessions — local AI session workbench";
+      ? "AllSessions — 本地 AI 会话索引"
+      : "AllSessions — local AI session index";
   renderTray(state.agent);
 }
 

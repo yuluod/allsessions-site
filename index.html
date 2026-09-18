@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AllSessions — 本地 AI 会话工作台</title>
+    <title>AllSessions — 本地 AI 会话索引</title>
     <meta
       name="description"
-      content="AllSessions 把各 AI 编码 Agent 散落在本机的会话收进同一个本地优先的桌面工作台：浏览、搜索、整理、导出。"
+      content="AllSessions 把各 AI 编码 Agent 散落在本机的会话收进同一个桌面应用：统一翻看、全文搜索、打标签、导出，都在本机完成，不上云。"
     />
-    <meta property="og:title" content="AllSessions — Every agent. One workbench." />
+    <meta property="og:title" content="AllSessions — Every agent. One index." />
     <meta
       property="og:description"
-      content="Browse, search, and organize local sessions from all your AI coding agents in one local-first desktop app."
+      content="AllSessions reads sessions from every AI coding agent on your machine into one local-first desktop app — browse, search, tag, and export, entirely on your machine."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://allsessions.airtools.tools/" />
@@ -74,14 +74,16 @@
     <main id="top">
       <section class="hero">
         <div class="hero__copy">
-          <h1 data-i18n="hero.title">12 个来源，一张工作台。</h1>
+          <h1 data-i18n="hero.title">12 个来源，一个索引。</h1>
           <p class="hero__sub" data-i18n="hero.sub">
             Codex、Codex 归档、Claude Code、Gemini CLI、Pi、Kimi Code CLI、OpenCode、ZCode、Cursor、Devin、GitHub
-            Copilot、Hermes Agent——散落在本机各处的会话，收进同一个桌面应用里浏览、搜索、整理、导出。全程本地，不开端口，不上云。
+            Copilot、Hermes
+            Agent：每个 Agent 都把会话写进自己的目录，格式互不相同。AllSessions
+            把它们统统读出来，放进同一个桌面应用。翻旧会话、搜全文、打标签、做导出，都在本机完成，不开端口，不上云。
           </p>
           <div class="hero__actions">
             <a class="cta-primary" href="#download">
-              <span data-i18n="hero.cta">取出卡片 · 下载</span>
+              <span data-i18n="hero.cta">下载 AllSessions</span>
             </a>
             <a
               class="cta-secondary"
@@ -125,7 +127,7 @@
       <section class="section" id="sources">
         <div class="section__plate"><span data-i18n="sources.title">来源索引</span></div>
         <p class="section__intro" data-i18n="sources.intro">
-          12 个来源，12 张索引卡。路径即事实——写在哪就从哪读；只读来源一律盖章。
+          下面 12 张卡，一张对一个来源：读哪个目录、能解析出什么，照实写。盖了只读章的，原始数据一个字节都不会动。
         </p>
         <div id="source-index" class="source-index"></div>
         <p class="section__foot" data-i18n="sources.note">
@@ -143,10 +145,10 @@
         <div class="local__grid">
           <div class="local__copy">
             <div class="section__plate"><span data-i18n="local.title">本地优先</span></div>
-            <h2 data-i18n="local.heading">卡片不出柜子。</h2>
+            <h2 data-i18n="local.heading">数据不出这台机器。</h2>
             <ul class="local__facts">
-              <li data-i18n="local.f1">解析、搜索、缓存全部由 Rust 在本机完成；不开本地 HTTP 端口，前后端只走 IPC。</li>
-              <li data-i18n="local.f2">全文索引是 SQLite 三角索引，整棵索引树都在你的磁盘上。</li>
+              <li data-i18n="local.f1">解析、搜索、缓存全部由本机的 Rust 完成，不开放本地端口；界面与核心之间的通信也不经过网络。</li>
+              <li data-i18n="local.f2">全文检索用本地 SQLite 的 trigram 索引，整个索引都在你自己的磁盘上。</li>
               <li data-i18n="local.f3">永久删除原始记录前先自动本地备份；只读来源的原始数据绝不被修改。</li>
               <li data-i18n="local.f4">导出可选脱敏；诊断信息可复制且不含会话内容与本地路径。</li>
             </ul>
@@ -247,9 +249,7 @@
         <a href="https://github.com/yuluod/AllSessions/blob/main/CHANGELOG.md" rel="noopener" data-i18n="footer.changelog">更新日志</a>
         <a href="https://github.com/yuluod/AllSessions/blob/main/LICENSE" rel="noopener">Apache-2.0</a>
       </nav>
-      <p class="footer__mark">
-        <span data-i18n="footer.made">本地手工打造</span> · AllSessions
-      </p>
+      <p class="footer__mark">© 2026 AllSessions</p>
     </footer>
 
     <script type="module" src="main.js"></script>
