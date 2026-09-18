@@ -16,7 +16,7 @@ Developers who run several AI coding agents (Codex, Claude Code, Gemini CLI, Pi,
 
 ## Product Purpose
 
-AllSessions is a local-first Tauri 2 desktop workbench that discovers, normalizes, searches, and organizes local AI coding-agent sessions in one interface. Success for this site: a visitor downloads the app.
+AllSessions is a local-first Tauri 2 desktop app that discovers, normalizes, searches, and organizes local AI coding-agent sessions — a single local index over all of them. Success for this site: a visitor downloads the app.
 
 ## Positioning
 
@@ -40,7 +40,7 @@ The only unified, fully local session browser across ten agent ecosystems. Sessi
 
 ## Brand Commitments
 
-- Name: AllSessions. Tagline territory: "local-first desktop workspace for AI coding-agent sessions".
+- Name: AllSessions. Tagline territory: "local-first index for AI coding-agent sessions" / 「本地 AI 会话索引」.
 - App icon exists: `public/assets/allsessions-icon-v3.png` in the main repo.
 - Agent SVG icons exist (lobe-icons set, license file included): claude, cursor, devin, gemini, kimi, openai, opencode, pi, zcode.
 - License: Apache-2.0.

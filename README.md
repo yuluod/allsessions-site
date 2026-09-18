@@ -1,6 +1,6 @@
 # allsessions-site
 
-Marketing site for [AllSessions](https://github.com/yuluod/AllSessions) — a local-first desktop workbench for AI coding-agent sessions.
+Marketing site for [AllSessions](https://github.com/yuluod/AllSessions) — a local-first desktop index for AI coding-agent sessions.
 
 Static HTML/CSS/JS, no build step. Deployed on GitHub Pages.
 
