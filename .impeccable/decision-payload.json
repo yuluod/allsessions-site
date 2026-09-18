@@ -1,0 +1,153 @@
+{
+  "title": "选择官网的视觉世界",
+  "question": "骰子指定了「跳线机架 The Routing Bay」：整个官网就是一个 19 英寸机架，十个 Agent 是十路输入通道，全部汇入一条总线——就是应用里那个统一会话列表。保留它、选备选，或重掷。",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Routing Bay · 跳线机架",
+      "kicker": "THE ROLL",
+      "lineage": "录音棚跳线盘与机架控制台",
+      "thesis": "整个官网就是一个机架：十路输入通道（十个 Agent）经由跳线汇入一条总线，总线里跑着真实的统一会话界面。",
+      "palette": ["#16181b", "#23262b", "#e8e6df", "#41d97e", "#f2a33c", "#d07a3f"],
+      "materials": ["阳极氧化铝面板", "丝网印刷标识", "LED 指示灯", "滚花旋钮", "机架螺丝"],
+      "viewport": "首屏即机架：上方是十根通道条（Agent 图标做插座帽、每路一盏 LED），跳线向下收束进总线单元——总线里是用 CSS 还原的应用主界面；底部输出区三个平台插座（macOS/Windows/Linux），你当前平台的那路自动点亮。",
+      "risk": "硬件隐喻必须保持功能性——每个插座和 LED 都要承载真实状态；一旦退化成装饰性拟物就失败。",
+      "raised": [
+        {"from": "challenger-nixie", "raise": "页面上所有状态都用物理灯/旗表达（信号在场、源已密封、索引热度），绝不用网页徽章。"},
+        {"from": "challenger-ebru", "raise": "只读来源做成「密封插座」：可监听、无写入路径，像单次接触拓印一样不可逆。"},
+        {"from": "challenger-forge", "raise": "状态变化用测量值表达（10 SOURCES → 1 INDEX、索引条数、窗口边界），不靠装饰动画。"},
+        {"from": "challenger-pattern", "raise": "未选中的路由保持虚线丝印，你选定的那路才变成实线。"}
+      ],
+      "wireframe": {"cols": 12, "rows": 10, "regions": [
+        {"label": "信号导轨 / 导航", "x": 0, "y": 0, "w": 12, "h": 1},
+        {"label": "十路通道条（Agent 插座 + LED）", "x": 0, "y": 1, "w": 12, "h": 3, "accent": true},
+        {"label": "跳线收束", "x": 2, "y": 4, "w": 8, "h": 1},
+        {"label": "总线单元：统一会话界面（CSS 还原）", "x": 1, "y": 5, "w": 10, "h": 3, "accent": true},
+        {"label": "输出区：平台下载插座", "x": 3, "y": 8, "w": 6, "h": 2, "accent": true}
+      ]}
+    },
+    {
+      "id": "model-pick",
+      "label": "The Session Catalog · 会话卡片目录",
+      "kicker": "IMPECCABLE'S PICK",
+      "lineage": "图书馆卡片目录柜",
+      "thesis": "把落地页做成一座目录柜：每个抽屉是一个 Agent 来源，每张目录卡是一条会话——「本地索引」从隐喻变成字面事实。",
+      "palette": ["#3a2f26", "#6b5233", "#f2ead9", "#b5302a", "#2e4a3c"],
+      "materials": ["橡木抽屉", "黄铜标签框", "目录卡纸", "馆藏印章"],
+      "viewport": "首屏一座目录柜立面：抽屉标签写着各来源名，拉开的一格露出卡片式会话列表；标题压在柜面上方，下载钮做成黄铜拉手。",
+      "risk": "这是此类产品最容易落到的方向，稳妥的代价是记忆点偏弱。",
+      "wireframe": {"cols": 12, "rows": 10, "regions": [
+        {"label": "柜顶铭牌 / 导航", "x": 0, "y": 0, "w": 12, "h": 1},
+        {"label": "标题与标语", "x": 2, "y": 1, "w": 8, "h": 2},
+        {"label": "目录柜：来源抽屉 + 拉开的会话卡", "x": 1, "y": 3, "w": 10, "h": 4, "accent": true},
+        {"label": "下载（黄铜拉手）", "x": 3, "y": 7, "w": 6, "h": 2, "accent": true},
+        {"label": "柜底版权栏", "x": 0, "y": 9, "w": 12, "h": 1}
+      ]}
+    },
+    {
+      "id": "challenger-arcade",
+      "label": "Arcade Marquee Row · 街机灯箱廊",
+      "verdict": "competitive",
+      "lineage": "街机厅背光招牌与 attract 屏",
+      "thesis": "一条黑暗的机厅过道：十个发光灯箱各属于一个 Agent，attract 屏循环播放各自的会话预览，尽头那台机器是 AllSessions。",
+      "palette": ["#0a0a10", "#27e0f5", "#ff3ec8", "#f5f0e6"],
+      "materials": ["背光灯箱", "喷绘侧板", "磷光字"],
+      "viewport": "首屏一排机柜沿过道排开，每台顶上是该 Agent 的背光 marquee，中间的 attract 屏循环演示会话画面；投币口的位置是下载按钮。",
+      "case": "融合度高：开发者对街机美学的认同感最强；惜败于机制表达——「一排机柜」是并列关系，弱化了「汇入一个视图」的统一叙事。",
+      "risk": "霓虹玩得克制才不像复古噱头；灯箱密度失控就会吵。",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-arcade-marquee-row-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/pop-culture-shelf-arcade-marquee-row.webp",
+      "wireframe": {"cols": 12, "rows": 10, "regions": [
+        {"label": "灯箱招牌排", "x": 0, "y": 0, "w": 12, "h": 2, "accent": true},
+        {"label": "机柜过道（每柜一源）", "x": 0, "y": 2, "w": 12, "h": 4, "accent": true},
+        {"label": "中央 attract 屏", "x": 4, "y": 3, "w": 4, "h": 2},
+        {"label": "下载（投币口）", "x": 3, "y": 7, "w": 6, "h": 2, "accent": true},
+        {"label": "过道地面 / 页脚", "x": 0, "y": 9, "w": 12, "h": 1}
+      ]}
+    },
+    {
+      "id": "challenger-tdr",
+      "label": "TDR Info-Noise · 信息噪声",
+      "verdict": "competitive",
+      "lineage": "Designers Republic 唱片封套",
+      "thesis": "噪声即叙事：满屏产品代码、警告符与伪识别纹样的信息噪声里，一个巨型压缩字「ALL SESSIONS」喊穿一切——混乱被解析成秩序。",
+      "palette": ["#000000", "#ff2d78", "#ff6b1a", "#ffffff"],
+      "materials": ["平印色块", "登记标记", "警告纹章", "条码碎片"],
+      "viewport": "首屏是绝对黑场：洋红靶心与安全橙标记沿边缘挤压，中央一个顶天立地的压缩粗体字，下方一行磷光白的下载入口。",
+      "case": "「噪声→信号」直接演绎了产品价值，且自带反模板气质；但 TDR 语境偏设计师文化，对工程师受众的文化认同较窄。",
+      "risk": "噪声密度需要精确分级，失手就是杂乱而不是体系。",
+      "hero": "https://impeccable.style/worlds/cards/tdr-info-noise-sleeve-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/tdr-info-noise-sleeve.webp",
+      "wireframe": {"cols": 12, "rows": 10, "regions": [
+        {"label": "纹样列（左）", "x": 0, "y": 0, "w": 2, "h": 10},
+        {"label": "纹样列（右）", "x": 10, "y": 0, "w": 2, "h": 10},
+        {"label": "巨型压缩字 ALL SESSIONS", "x": 2, "y": 1, "w": 8, "h": 3, "accent": true},
+        {"label": "下载入口", "x": 4, "y": 4, "w": 4, "h": 1, "accent": true},
+        {"label": "内容网格", "x": 2, "y": 5, "w": 8, "h": 5}
+      ]}
+    },
+    {
+      "id": "challenger-nixie",
+      "label": "Nixie Counter · 辉光管计数器",
+      "verdict": "declined",
+      "lineage": "实验室辉光管仪表",
+      "palette": ["#14100c", "#ff7a1a", "#8a8f94"],
+      "materials": ["玻璃管壳", "发黑钢壳", "阳极栅网"],
+      "case": "计数器只贴合「统计」一个功能点，撑不起「十源归一」的机制表达。",
+      "kept": "物理指示即状态真实性——页面状态一律用物理灯/旗表达，不用网页徽章。",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-nixie-laboratory-counter-hero.webp"
+    },
+    {
+      "id": "challenger-ebru",
+      "label": "Ebru Bath · 湿拓画",
+      "verdict": "declined",
+      "lineage": "水面浮色单次拓印",
+      "palette": ["#e8ddc8", "#28457a", "#a64b2a"],
+      "materials": ["粘稠水浴", "浮色", "施胶纸"],
+      "case": "流体美学与工程师工具的文化语境错位，两条轴都输。",
+      "kept": "单次接触不可逆的诚实——只读来源做成「密封插座」状态。",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-ebru-floated-pigment-hero.webp"
+    },
+    {
+      "id": "challenger-forge",
+      "label": "Forge & Scale · 锻打与氧化皮",
+      "verdict": "declined",
+      "lineage": "动力锤下的白热铁坯",
+      "palette": ["#0e0d0c", "#ff5a1f", "#6f7376"],
+      "materials": ["锻件渐热色", "铁屑颗粒", "钢砧灰"],
+      "case": "重工业语域与一个精密工具产品冲突。",
+      "kept": "用测量值的前后对比代替动画表达状态变化。",
+      "hero": "https://impeccable.style/worlds/cards/metal-forging-patina-blacksmith-scale-shower-hero.webp"
+    },
+    {
+      "id": "challenger-pattern",
+      "label": "Pattern Envelope · 缝纫纸样",
+      "verdict": "declined",
+      "lineage": "家用缝纫纸样封套与牛皮纸样",
+      "palette": ["#d9c9a3", "#1a1712", "#b5302a"],
+      "materials": ["马尼拉薄纸", "制图墨线", "干水粉"],
+      "case": "纸样文化对开发者受众没有认同感。",
+      "kept": "承诺式状态语法：未选中虚线、选定实线。",
+      "hero": "https://impeccable.style/worlds/cards/fashion-folded-worlds-sewing-pattern-envelope-hero.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": false},
+  "canon": true,
+  "canonCard": {
+    "label": "品类标准做法",
+    "thesis": "深色开发者工具落地页：大标题 + 代码片段 + 渐变光晕 + 截图卡片，按最高工艺执行。",
+    "palette": ["#0b0d12", "#ffffff", "#3b82f6"],
+    "materials": ["干净栅格", "界面截图", "渐变光晕"],
+    "viewport": "访客预期中的那种排布，以满级工艺呈现。",
+    "risk": "按设计就与众无异——这正是你标记过的「模板感」。",
+    "wireframe": {"cols": 12, "rows": 10, "regions": [
+      {"label": "导航", "x": 0, "y": 0, "w": 12, "h": 1},
+      {"label": "标题 + 下载", "x": 1, "y": 2, "w": 5, "h": 4},
+      {"label": "产品截图", "x": 6, "y": 1, "w": 6, "h": 5, "accent": true},
+      {"label": "来源 logo 墙", "x": 0, "y": 7, "w": 12, "h": 2},
+      {"label": "特性卡片", "x": 0, "y": 9, "w": 12, "h": 1}
+    ]}
+  },
+  "steer": true
+}
