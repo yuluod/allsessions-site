@@ -6,14 +6,23 @@
     <title>AllSessions — 本地 AI 会话工作台</title>
     <meta
       name="description"
-      content="AllSessions 把十个 AI 编码 Agent 散落在本机的会话收进同一个本地优先的桌面工作台：浏览、搜索、整理、导出。"
+      content="AllSessions 把各 AI 编码 Agent 散落在本机的会话收进同一个本地优先的桌面工作台：浏览、搜索、整理、导出。"
     />
     <meta property="og:title" content="AllSessions — Every agent. One workbench." />
     <meta
       property="og:description"
-      content="Browse, search, and organize local sessions from ten AI coding agents in one local-first desktop app."
+      content="Browse, search, and organize local sessions from all your AI coding agents in one local-first desktop app."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://iyuluo.com/allsessions-site/" />
+    <meta
+      property="og:image"
+      content="https://iyuluo.com/allsessions-site/assets/allsessions-icon-v3.png"
+    />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://iyuluo.com/allsessions-site/" />
     <link rel="icon" type="image/png" href="assets/allsessions-icon-v3.png" />
     <link
       rel="preload"
@@ -65,10 +74,10 @@
     <main id="top">
       <section class="hero">
         <div class="hero__copy">
-          <h1 data-i18n="hero.title">十个来源，一张工作台。</h1>
+          <h1 data-i18n="hero.title">12 个来源，一张工作台。</h1>
           <p class="hero__sub" data-i18n="hero.sub">
-            Codex、Claude Code、Gemini CLI、Pi、Kimi Code CLI、OpenCode、ZCode、Cursor、Devin、GitHub
-            Copilot——散落在本机各处的会话，收进同一个桌面应用里浏览、搜索、整理、导出。全程本地，不开端口，不上云。
+            Codex、Codex 归档、Claude Code、Gemini CLI、Pi、Kimi Code CLI、OpenCode、ZCode、Cursor、Devin、GitHub
+            Copilot、Hermes Agent——散落在本机各处的会话，收进同一个桌面应用里浏览、搜索、整理、导出。全程本地，不开端口，不上云。
           </p>
           <div class="hero__actions">
             <a class="cta-primary" href="#download">
@@ -84,7 +93,7 @@
           </div>
           <p class="hero__detect">
             <span class="detect-dot" aria-hidden="true"></span>
-            <span id="detect-label" data-i18n="hero.detect">为你检出：</span>
+            <span id="detect-label" data-i18n="hero.detect">已识别你的系统：</span>
             <strong id="detect-platform">—</strong>
           </p>
         </div>
@@ -116,11 +125,12 @@
       <section class="section" id="sources">
         <div class="section__plate"><span data-i18n="sources.title">来源索引</span></div>
         <p class="section__intro" data-i18n="sources.intro">
-          十个来源，十张索引卡。路径即事实——写在哪就从哪读；只读来源一律盖章。
+          12 个来源，12 张索引卡。路径即事实——写在哪就从哪读；只读来源一律盖章。
         </p>
         <div id="source-index" class="source-index"></div>
         <p class="section__foot" data-i18n="sources.note">
-          Codex 归档会话（~/.codex/archived_sessions）同样可浏览与检索。
+          只读来源的原始数据永不被修改；「本地移除」只在 AllSessions 内生效，删除原件请回到对应
+          Agent。
         </p>
       </section>
 
@@ -176,7 +186,7 @@
           <div class="slip" data-platform="mac">
             <div class="slip__head">
               <span class="slip__name">macOS</span>
-              <span class="slip__rec" data-i18n="desk.recommended" hidden>检出</span>
+              <span class="slip__rec" data-i18n="desk.recommended" hidden>你的平台</span>
             </div>
             <a class="slip__link" data-asset="mac-arm64" href="https://github.com/yuluod/AllSessions/releases/latest">
               <span class="slip__file">AllSessions-…-mac-arm64.dmg</span>
@@ -193,7 +203,7 @@
           <div class="slip" data-platform="windows">
             <div class="slip__head">
               <span class="slip__name">Windows</span>
-              <span class="slip__rec" data-i18n="desk.recommended" hidden>检出</span>
+              <span class="slip__rec" data-i18n="desk.recommended" hidden>你的平台</span>
             </div>
             <a class="slip__link" data-asset="windows" href="https://github.com/yuluod/AllSessions/releases/latest">
               <span class="slip__file">AllSessions-…-windows-x64-setup.exe</span>
@@ -204,7 +214,7 @@
           <div class="slip" data-platform="linux">
             <div class="slip__head">
               <span class="slip__name">Linux</span>
-              <span class="slip__rec" data-i18n="desk.recommended" hidden>检出</span>
+              <span class="slip__rec" data-i18n="desk.recommended" hidden>你的平台</span>
             </div>
             <a class="slip__link" data-asset="linux" href="https://github.com/yuluod/AllSessions/releases/latest">
               <span class="slip__file">AllSessions-…-linux-x64.deb</span>
@@ -220,7 +230,7 @@
             href="https://github.com/yuluod/AllSessions/releases"
             rel="noopener"
             data-i18n="desk.all"
-            >查看全部 Release →</a
+            >查看全部发布 →</a
           >
         </p>
       </section>
@@ -231,14 +241,14 @@
         AllSessions 是独立社区项目，与所支持 Agent 的厂商无任何隶属、赞助或背书关系；产品与公司名称仅用于标识兼容的本地数据来源。
       </p>
       <nav class="footer__links" aria-label="Project links">
-        <a href="https://github.com/yuluod/AllSessions" rel="noopener">Repository</a>
+        <a href="https://github.com/yuluod/AllSessions" rel="noopener" data-i18n="footer.repository">仓库</a>
         <a href="https://github.com/yuluod/AllSessions/releases" rel="noopener" data-i18n="footer.releases">Releases</a>
-        <a href="https://github.com/yuluod/AllSessions/issues" rel="noopener">Issues</a>
-        <a href="https://github.com/yuluod/AllSessions/blob/main/CHANGELOG.md" rel="noopener">Changelog</a>
+        <a href="https://github.com/yuluod/AllSessions/issues" rel="noopener" data-i18n="footer.issues">议题</a>
+        <a href="https://github.com/yuluod/AllSessions/blob/main/CHANGELOG.md" rel="noopener" data-i18n="footer.changelog">更新日志</a>
         <a href="https://github.com/yuluod/AllSessions/blob/main/LICENSE" rel="noopener">Apache-2.0</a>
       </nav>
       <p class="footer__mark">
-        <span data-i18n="footer.made">手造于本地</span> · AllSessions
+        <span data-i18n="footer.made">本地手工打造</span> · AllSessions
       </p>
     </footer>
 

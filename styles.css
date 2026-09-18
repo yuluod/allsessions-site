@@ -395,7 +395,7 @@ img {
 .cabinet__drawers {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
 }
 
@@ -1002,7 +1002,7 @@ img {
 
 .desk__slips {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -1074,6 +1074,7 @@ img {
 
 .slip__file {
   overflow: hidden;
+  min-width: 0;
   color: var(--source);
   font-family: var(--font-typed);
   font-size: 0.72rem;
@@ -1215,9 +1216,14 @@ img {
     right: 12px;
   }
 
-  .local__grid,
-  .desk__slips {
+  .local__grid {
     grid-template-columns: 1fr;
+  }
+
+  /* minmax(0,1fr)：1fr 的自动最小尺寸会取卡片注释文本的固有宽度，
+     把轨道撑出容器产生横向滚动 */
+  .desk__slips {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .tray__head {
