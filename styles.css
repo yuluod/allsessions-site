@@ -299,15 +299,6 @@ img {
   font-weight: 700;
 }
 
-.hero__platform-note {
-  max-width: 38em;
-  margin: 8px 0 0;
-  color: var(--stamp);
-  font-family: var(--font-typed);
-  font-size: 0.72rem;
-  line-height: 1.55;
-}
-
 .detect-dot {
   width: 7px;
   height: 7px;

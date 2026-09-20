@@ -401,7 +401,6 @@ const I18N = {
     "hero.cta.fallback": "前往 GitHub Releases",
     "hero.secondary": "GitHub 仓库",
     "hero.detect": "已识别你的系统：",
-    "hero.macNote": "尚未公证 · 首次启动需在「隐私与安全性」中允许",
     "release.loading": "正在读取最新版本…",
     "release.ready": "已读取最新版本，可直接下载安装包。",
     "release.error": "暂时无法读取最新版本，请前往 GitHub Releases 下载。",
@@ -466,7 +465,6 @@ const I18N = {
     "hero.cta.fallback": "Open GitHub Releases",
     "hero.secondary": "GitHub repository",
     "hero.detect": "Detected for you:",
-    "hero.macNote": "Not notarized yet · allow it in Privacy & Security on first launch",
     "release.loading": "Reading the latest release…",
     "release.ready": "Latest release loaded. Installers are ready to download.",
     "release.error": "The latest release is unavailable right now. Download from GitHub Releases instead.",
@@ -709,16 +707,12 @@ function detectPlatform() {
 function updateDownloadUI() {
   const heroDownload = $("#hero-download");
   const heroLabel = heroDownload.querySelector("span");
-  const platformNote = $("#hero-platform-note");
   const releaseStatus = $("#release-status");
   const retry = $("#release-retry");
 
   releaseStatus.dataset.state = state.releaseStatus;
   releaseStatus.textContent = t(`release.${state.releaseStatus}`);
   retry.hidden = state.releaseStatus !== "error";
-
-  platformNote.hidden = state.platform !== "mac";
-  platformNote.textContent = state.platform === "mac" ? t("hero.macNote") : "";
 
   if (state.releaseStatus === "error") {
     heroDownload.href = `https://github.com/${REPO}/releases/latest`;
