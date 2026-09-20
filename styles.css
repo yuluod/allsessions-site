@@ -299,6 +299,15 @@ img {
   font-weight: 700;
 }
 
+.hero__platform-note {
+  max-width: 38em;
+  margin: 8px 0 0;
+  color: var(--stamp);
+  font-family: var(--font-typed);
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
 .detect-dot {
   width: 7px;
   height: 7px;
@@ -1105,6 +1114,46 @@ img {
   margin: 26px 0 0;
   font-family: var(--font-typed);
   font-size: 0.8rem;
+}
+
+.release-state {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+  margin: -14px 0 24px;
+}
+
+#release-status {
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: var(--font-typed);
+  font-size: 0.76rem;
+}
+
+#release-status[data-state="ready"] {
+  color: var(--source);
+}
+
+#release-status[data-state="error"] {
+  color: var(--stamp);
+}
+
+.release-retry {
+  min-height: 34px;
+  padding: 4px 10px;
+  border: 1px solid var(--brass-deep);
+  border-radius: 3px;
+  background: var(--card-hi);
+  color: var(--source);
+  cursor: pointer;
+  font-family: var(--font-typed);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.release-retry:hover {
+  background: var(--card);
 }
 
 /* ———— 页脚 ———— */

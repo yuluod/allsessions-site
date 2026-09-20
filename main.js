@@ -393,10 +393,22 @@ const I18N = {
     "nav.github": "GitHub",
     "hero.title": "{n} 个来源，一个索引。",
     "hero.sub":
-      "{agents}：每个 Agent 都把会话写进自己的目录，格式互不相同。AllSessions 把它们统统读出来，放进同一个桌面应用。翻旧会话、搜全文、打标签、做导出，都在本机完成，不开端口，不上云。",
+      "把散落在各个 AI Agent 里的本地会话收进同一个索引。翻旧会话、搜全文、打标签、做导出，全都在本机完成，不开端口，不上云。",
     "hero.cta": "下载 AllSessions",
+    "hero.cta.windows": "下载 Windows x64",
+    "hero.cta.linux": "下载 Linux .deb",
+    "hero.cta.mac": "选择 macOS 版本",
+    "hero.cta.fallback": "前往 GitHub Releases",
     "hero.secondary": "GitHub 仓库",
     "hero.detect": "已识别你的系统：",
+    "hero.macNote": "尚未公证 · 首次启动需在「隐私与安全性」中允许",
+    "release.loading": "正在读取最新版本…",
+    "release.ready": "已读取最新版本，可直接下载安装包。",
+    "release.error": "暂时无法读取最新版本，请前往 GitHub Releases 下载。",
+    "release.retry": "重试",
+    "aria.sections": "页面分区",
+    "aria.cabinet": "会话目录柜演示",
+    "aria.projectLinks": "项目链接",
     "tray.search": "搜索…",
     "tray.demo": "演示",
     "tray.msgs": "{n} 条消息",
@@ -446,10 +458,22 @@ const I18N = {
     "nav.github": "GitHub",
     "hero.title": "Every agent. One index.",
     "hero.sub":
-      "{agents}: each agent writes its sessions to a different directory, in a different format. AllSessions reads them all into one desktop app. Browse, search, tag, and export — all on your machine, no port, no cloud.",
+      "Bring local sessions scattered across AI agents into one index. Browse, search, tag, and export entirely on your machine, with no local port and no cloud.",
     "hero.cta": "Download AllSessions",
+    "hero.cta.windows": "Download for Windows x64",
+    "hero.cta.linux": "Download Linux .deb",
+    "hero.cta.mac": "Choose a macOS build",
+    "hero.cta.fallback": "Open GitHub Releases",
     "hero.secondary": "GitHub repository",
     "hero.detect": "Detected for you:",
+    "hero.macNote": "Not notarized yet · allow it in Privacy & Security on first launch",
+    "release.loading": "Reading the latest release…",
+    "release.ready": "Latest release loaded. Installers are ready to download.",
+    "release.error": "The latest release is unavailable right now. Download from GitHub Releases instead.",
+    "release.retry": "Retry",
+    "aria.sections": "Page sections",
+    "aria.cabinet": "Session catalog cabinet demo",
+    "aria.projectLinks": "Project links",
     "tray.search": "Search…",
     "tray.demo": "DEMO",
     "tray.msgs": "{n} msgs",
@@ -498,6 +522,9 @@ const I18N = {
 const state = {
   lang: "zh",
   agent: "codex",
+  platform: null,
+  releaseStatus: "loading",
+  assets: {},
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -514,6 +541,9 @@ function applyI18n() {
     .querySelectorAll("[data-i18n]")
     .forEach((el) => (el.textContent = t(el.dataset.i18n, i18nVars(el.dataset.i18n))));
   document
+    .querySelectorAll("[data-i18n-aria]")
+    .forEach((el) => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
+  document
     .querySelectorAll("[data-lang-opt]")
     .forEach((el) =>
       el.classList.toggle("is-on", el.dataset.langOpt === state.lang)
@@ -522,6 +552,7 @@ function applyI18n() {
     state.lang === "zh"
       ? "AllSessions — 本地 AI 会话索引"
       : "AllSessions — local AI session index";
+  updateDownloadUI();
   renderTray(state.agent);
 }
 
@@ -537,15 +568,10 @@ function agentIcon(agent) {
 // “Codex 归档”这类来源的名字分语言，其余 Agent 名字中英通用
 const agentName = (a) => (typeof a.name === "string" ? a.name : a.name[state.lang]);
 
-// 数量与名单从 AGENTS 推导，新增来源时文案自动跟进，无需改这里；
+// 数量从 AGENTS 推导，新增来源时标题与索引说明自动跟进；
 // Codex 归档也算一个来源，与标题里的 {n} 和索引卡数量保持一致
-const agentList = () =>
-  AGENTS.map((a) => agentName(a)).join(state.lang === "zh" ? "、" : ", ");
-
 const i18nVars = (key) =>
-  key === "hero.sub"
-    ? { agents: agentList() }
-    : key === "hero.title" || key === "sources.intro"
+  key === "hero.title" || key === "sources.intro"
       ? { n: AGENTS.length }
       : undefined;
 
@@ -657,22 +683,72 @@ function detectPlatform() {
   const isMobile =
     /iPhone|iPad|iPod|Android|Mobile/i.test(ua) ||
     (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
-  const p = isMobile
+  state.platform = isMobile
     ? null
     : /Windows/.test(ua)
       ? "windows"
       : /Mac OS X|Macintosh/.test(ua)
         ? "mac"
         : "linux";
-  $(".hero__detect").hidden = !p;
-  if (!p) return;
-  $("#detect-platform").textContent = t(`platform.${p}`);
-  const slip = document.querySelector(`.slip[data-platform="${p}"]`);
+  $(".hero__detect").hidden = !state.platform;
+  document.querySelectorAll(".slip").forEach((slip) => {
+    slip.classList.remove("is-detected");
+    slip.querySelector(".slip__rec")?.setAttribute("hidden", "");
+  });
+  if (!state.platform) {
+    updateDownloadUI();
+    return;
+  }
+  $("#detect-platform").textContent = t(`platform.${state.platform}`);
+  const slip = document.querySelector(`.slip[data-platform="${state.platform}"]`);
   slip?.classList.add("is-detected");
   slip?.querySelector(".slip__rec")?.removeAttribute("hidden");
+  updateDownloadUI();
+}
+
+function updateDownloadUI() {
+  const heroDownload = $("#hero-download");
+  const heroLabel = heroDownload.querySelector("span");
+  const platformNote = $("#hero-platform-note");
+  const releaseStatus = $("#release-status");
+  const retry = $("#release-retry");
+
+  releaseStatus.dataset.state = state.releaseStatus;
+  releaseStatus.textContent = t(`release.${state.releaseStatus}`);
+  retry.hidden = state.releaseStatus !== "error";
+
+  platformNote.hidden = state.platform !== "mac";
+  platformNote.textContent = state.platform === "mac" ? t("hero.macNote") : "";
+
+  if (state.releaseStatus === "error") {
+    heroDownload.href = `https://github.com/${REPO}/releases/latest`;
+    heroLabel.textContent = t("hero.cta.fallback");
+    return;
+  }
+
+  if (state.platform === "windows" && state.assets.windows) {
+    heroDownload.href = state.assets.windows;
+    heroLabel.textContent = t("hero.cta.windows");
+    return;
+  }
+  if (state.platform === "linux" && state.assets.linux) {
+    heroDownload.href = state.assets.linux;
+    heroLabel.textContent = t("hero.cta.linux");
+    return;
+  }
+  if (state.platform === "mac") {
+    heroDownload.href = "#download";
+    heroLabel.textContent = t("hero.cta.mac");
+    return;
+  }
+
+  heroDownload.href = "#download";
+  heroLabel.textContent = t("hero.cta");
 }
 
 async function loadRelease() {
+  state.releaseStatus = "loading";
+  updateDownloadUI();
   try {
     const res = await fetch(API_URL);
     if (!res.ok) throw new Error(res.status);
@@ -691,14 +767,25 @@ async function loadRelease() {
         const el = document.querySelector(`[data-asset="${key}"]`);
         if (!el) continue;
         el.href = asset.browser_download_url;
+        state.assets[key] = asset.browser_download_url;
         el.querySelector(".slip__file").textContent = asset.name;
         el.querySelector(".slip__size").textContent =
           `${(asset.size / 1048576).toFixed(1)} MB`;
       }
     }
-  } catch {
+    const expectedAssets = ["mac-arm64", "mac-x64", "windows", "linux"];
+    if (!expectedAssets.every((key) => state.assets[key])) {
+      throw new Error("Release 缺少预期安装包");
+    }
+    state.releaseStatus = "ready";
+  } catch (error) {
     $("#plate-version").textContent = "";
-    $("#desk-version").textContent = "releases";
+    $("#desk-version").textContent = "—";
+    state.releaseStatus = "error";
+    state.assets = {};
+    console.warn("无法读取 GitHub Release", error);
+  } finally {
+    updateDownloadUI();
   }
 }
 
@@ -725,6 +812,7 @@ function init() {
     applyI18n();
     detectPlatform();
   });
+  $("#release-retry").addEventListener("click", loadRelease);
 }
 
 init();
