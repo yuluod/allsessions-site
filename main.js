@@ -740,13 +740,31 @@ function updateDownloadUI() {
   heroLabel.textContent = t("hero.cta");
 }
 
+const RELEASE_CACHE_KEY = "allsessions_site_release";
+const RELEASE_CACHE_TTL = 10 * 60 * 1000;
+
+async function fetchRelease() {
+  const cached = storage.get(RELEASE_CACHE_KEY, true);
+  if (cached) {
+    try {
+      const { ts, data } = JSON.parse(cached);
+      if (Date.now() - ts < RELEASE_CACHE_TTL) return data;
+    } catch {
+      /* 坏缓存按未命中处理 */
+    }
+  }
+  const res = await fetch(API_URL, { signal: AbortSignal.timeout(8000) });
+  if (!res.ok) throw new Error(String(res.status));
+  const data = await res.json();
+  storage.set(RELEASE_CACHE_KEY, JSON.stringify({ ts: Date.now(), data }), true);
+  return data;
+}
+
 async function loadRelease() {
   state.releaseStatus = "loading";
   updateDownloadUI();
   try {
-    const res = await fetch(API_URL);
-    if (!res.ok) throw new Error(res.status);
-    const data = await res.json();
+    const data = await fetchRelease();
     $("#plate-version").textContent = data.tag_name;
     $("#desk-version").textContent = data.tag_name;
     const match = {
