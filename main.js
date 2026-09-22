@@ -527,6 +527,24 @@ const state = {
 
 const $ = (sel) => document.querySelector(sel);
 
+// 隐私模式下 localStorage/sessionStorage 可能抛异常，统一兜底
+const storage = {
+  get(k, session) {
+    try {
+      return (session ? sessionStorage : localStorage).getItem(k);
+    } catch {
+      return null;
+    }
+  },
+  set(k, v, session) {
+    try {
+      (session ? sessionStorage : localStorage).setItem(k, v);
+    } catch {
+      /* 写入失败不影响功能 */
+    }
+  },
+};
+
 function t(key, vars) {
   let s = I18N[state.lang][key] ?? I18N.en[key] ?? key;
   if (vars) for (const [k, v] of Object.entries(vars)) s = s.replaceAll(`{${k}}`, v);
@@ -577,7 +595,7 @@ function renderDrawers() {
   const grid = $("#drawer-grid");
   grid.innerHTML = AGENTS.map(
     (a) => `
-    <button class="drawer${a.id === state.agent ? " is-open" : ""}" type="button" data-agent="${a.id}" aria-pressed="${a.id === state.agent}">
+    <button class="drawer${a.id === state.agent ? " is-open" : ""}" type="button" role="tab" id="drawer-tab-${a.id}" data-agent="${a.id}" aria-controls="card-tray" aria-selected="${a.id === state.agent}" tabindex="${a.id === state.agent ? 0 : -1}">
       <span class="drawer__frame">
         <span class="drawer__name">${agentName(a)}</span>
         <span class="drawer__count">${String(a.cards[state.lang].length).padStart(2, "0")}</span>
@@ -585,9 +603,23 @@ function renderDrawers() {
       <span class="drawer__pull" aria-hidden="true"></span>
     </button>`
   ).join("");
-  grid.querySelectorAll(".drawer").forEach((btn) =>
-    btn.addEventListener("click", () => selectAgent(btn.dataset.agent))
-  );
+  grid.querySelectorAll(".drawer").forEach((btn) => {
+    btn.addEventListener("click", () => selectAgent(btn.dataset.agent));
+    btn.addEventListener("keydown", onDrawerKeydown);
+  });
+}
+
+// APG tab 模式：方向键循环切换并自动激活，Home/End 跳首尾
+function onDrawerKeydown(e) {
+  const step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -1, ArrowDown: 1 }[e.key];
+  let idx = AGENTS.findIndex((a) => a.id === state.agent);
+  if (step) idx = (idx + step + AGENTS.length) % AGENTS.length;
+  else if (e.key === "Home") idx = 0;
+  else if (e.key === "End") idx = AGENTS.length - 1;
+  else return;
+  e.preventDefault();
+  selectAgent(AGENTS[idx].id);
+  $(`#drawer-tab-${AGENTS[idx].id}`)?.focus();
 }
 
 function selectAgent(id) {
@@ -598,13 +630,15 @@ function selectAgent(id) {
     .forEach((d) => {
       const open = d.dataset.agent === id;
       d.classList.toggle("is-open", open);
-      d.setAttribute("aria-pressed", String(open));
+      d.setAttribute("aria-selected", String(open));
+      d.tabIndex = open ? 0 : -1;
     });
   renderTray(id);
 }
 
 function renderTray(id) {
   const agent = AGENTS.find((a) => a.id === id);
+  $("#card-tray").setAttribute("aria-labelledby", `drawer-tab-${id}`);
   $("#tray-agent").textContent = agentName(agent);
   $("#tray-path").textContent = agent.path;
   $("#tray-count").textContent = t("tray.cards", {
@@ -826,9 +860,13 @@ async function loadRelease() {
 /* ———— init ———— */
 
 function init() {
-  const saved = localStorage.getItem("allsessions_site_lang");
+  const saved = storage.get("allsessions_site_lang");
   state.lang =
-    saved || (navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en");
+    saved === "zh" || saved === "en"
+      ? saved
+      : navigator.language.toLowerCase().startsWith("zh")
+        ? "zh"
+        : "en";
 
   renderDrawers();
   renderSources();
@@ -855,7 +893,7 @@ function init() {
 
   $("#lang-toggle").addEventListener("click", () => {
     state.lang = state.lang === "zh" ? "en" : "zh";
-    localStorage.setItem("allsessions_site_lang", state.lang);
+    storage.set("allsessions_site_lang", state.lang);
     renderDrawers();
     renderSources();
     renderFeatures();

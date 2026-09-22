@@ -704,9 +704,18 @@ img {
 
 .section__foot {
   margin: 20px 0 0;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   font-family: var(--font-typed);
   font-size: 0.75rem;
+}
+
+.noscript-note {
+  max-width: var(--max);
+  margin: 24px auto 0;
+  padding: 12px clamp(16px, 4vw, 36px);
+  color: var(--stamp);
+  font-family: var(--font-typed);
+  font-size: 0.8rem;
 }
 
 /* ———— 来源索引卡 ———— */

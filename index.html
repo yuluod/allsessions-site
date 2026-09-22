@@ -92,6 +92,12 @@
     </header>
 
     <main id="top">
+      <noscript>
+        <p class="noscript-note">
+          来源索引与功能抽屉需要启用 JavaScript；下方下载链接仍然可用。The source index and
+          feature drawers need JavaScript. The download links below still work.
+        </p>
+      </noscript>
       <section class="hero">
         <div class="hero__copy">
           <h1 data-i18n="hero.title">12 个来源，一个索引。</h1>
@@ -122,8 +128,8 @@
             <span class="cabinet__plate-text">ALL SESSIONS · LOCAL INDEX</span>
             <span class="cabinet__plate-ver" id="plate-version">v—</span>
           </div>
-          <div id="drawer-grid" class="cabinet__drawers"></div>
-          <div class="cabinet__tray" id="card-tray">
+          <div id="drawer-grid" class="cabinet__drawers" role="tablist"></div>
+          <div class="cabinet__tray" id="card-tray" role="tabpanel">
             <div class="tray__head">
               <span class="tray__label">
                 <span id="tray-agent">—</span>
