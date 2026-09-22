@@ -654,28 +654,44 @@ function renderFeatures() {
   $("#feature-drawers").innerHTML = FEATURES.map((f, i) => {
     const c = f[state.lang];
     return `
-    <div class="fdrawer${i === 0 ? " is-open" : ""}">
-      <button class="fdrawer__front" type="button" aria-expanded="${i === 0}">
+    <div class="fdrawer${i === 0 ? " is-open" : ""}" style="--i:${i}">
+      <button class="fdrawer__front" type="button" aria-expanded="${i === 0}" aria-controls="ftray-${f.key}">
         <span class="fdrawer__frame">
           <span class="fdrawer__name">${c.name}</span>
-          <span class="fdrawer__hint">${c.hint}</span>
+          <span class="fdrawer__meta">
+            <span class="fdrawer__hint">${c.hint}</span>
+            <span class="fdrawer__count">${String(c.items.length).padStart(2, "0")}</span>
+          </span>
         </span>
         <span class="fdrawer__pull" aria-hidden="true"></span>
       </button>
-      <div class="fdrawer__tray"><div class="fdrawer__inner">
+      <div class="fdrawer__tray" id="ftray-${f.key}"><div class="fdrawer__inner">
         <div class="fdrawer__card"><ul>
           ${c.items.map((it) => `<li>${it}</li>`).join("")}
         </ul></div>
       </div></div>
     </div>`;
   }).join("");
-  document.querySelectorAll(".fdrawer__front").forEach((btn) =>
+  const fronts = [...document.querySelectorAll(".fdrawer__front")];
+  fronts.forEach((btn) => {
+    // 互斥展开：一次只拉一个抽屉
     btn.addEventListener("click", () => {
       const d = btn.closest(".fdrawer");
-      const open = d.classList.toggle("is-open");
+      const open = !d.classList.contains("is-open");
+      fronts.forEach((b) => {
+        b.closest(".fdrawer").classList.remove("is-open");
+        b.setAttribute("aria-expanded", "false");
+      });
+      d.classList.toggle("is-open", open);
       btn.setAttribute("aria-expanded", String(open));
-    })
-  );
+    });
+    btn.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+      e.preventDefault();
+      const i = fronts.indexOf(btn) + (e.key === "ArrowDown" ? 1 : -1);
+      fronts[(i + fronts.length) % fronts.length].focus();
+    });
+  });
 }
 
 /* ———— 平台检测 + Release ———— */
@@ -820,6 +836,22 @@ function init() {
   applyI18n();
   detectPlatform();
   loadRelease();
+
+  // 功能屉滚入视口才发牌；容器是静态节点，语言切换重渲染不影响 is-dealt
+  const featureTray = $("#feature-drawers");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      (entries, obs) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          featureTray.classList.add("is-dealt");
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    ).observe(featureTray);
+  } else {
+    featureTray.classList.add("is-dealt");
+  }
 
   $("#lang-toggle").addEventListener("click", () => {
     state.lang = state.lang === "zh" ? "en" : "zh";

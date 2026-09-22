@@ -827,6 +827,15 @@ img {
     inset 0 1px 0 rgb(255 255 255 / 8%),
     0 3px 8px rgb(58 47 38 / 30%);
   overflow: hidden;
+  transition:
+    opacity 0.45s var(--ease-out),
+    transform 0.45s var(--ease-out);
+  transition-delay: calc(var(--i) * 55ms);
+}
+
+.feature-drawers:not(.is-dealt) .fdrawer {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 .fdrawer__front {
@@ -866,11 +875,25 @@ img {
   text-shadow: 0 1px 0 rgb(255 244 214 / 45%);
 }
 
+.fdrawer__meta {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: 10px;
+}
+
 .fdrawer__hint {
   color: #5a411d;
   font-family: var(--font-typed);
   font-size: 0.68rem;
   white-space: nowrap;
+}
+
+.fdrawer__count {
+  color: #5a411d;
+  font-family: var(--font-typed);
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .fdrawer__pull {
@@ -909,6 +932,22 @@ img {
   font-family: var(--font-typed);
 }
 
+/* 拉开抽屉时卡片抽出 */
+.fdrawer.is-open .fdrawer__card {
+  animation: deal-card 0.45s var(--ease-out) both;
+}
+
+@keyframes deal-card {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .fdrawer__card ul {
   margin: 0;
   padding-inline-start: 18px;
@@ -919,6 +958,10 @@ img {
   color: var(--ink-soft);
   font-size: 0.78rem;
   line-height: 1.6;
+}
+
+.fdrawer__card li::marker {
+  color: var(--brass);
 }
 
 /* ———— 本地优先 ———— */
