@@ -564,8 +564,9 @@ img {
   animation-delay: calc(var(--i) * 70ms);
 }
 
-/* 卡片底部打孔 */
-.index-card::after {
+/* 卡片底部打孔（index-card / source-card 共用） */
+.index-card::after,
+.source-card::after {
   position: absolute;
   bottom: 7px;
   left: 50%;
@@ -712,25 +713,48 @@ img {
 
 .source-index {
   display: grid;
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 12px;
 }
 
 .source-card {
   position: relative;
-  display: grid;
-  grid-template-columns: 46px minmax(150px, 220px) minmax(0, 1fr) auto;
-  gap: 16px;
-  align-items: center;
-  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 16px 22px;
   border: 1px solid var(--card-line);
   border-top: 2px solid var(--rule-red);
   border-radius: 2px;
   background: linear-gradient(180deg, var(--card-hi), var(--card));
   box-shadow: 0 2px 5px rgb(58 47 38 / 10%);
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    transform 0.18s var(--ease-out),
+    box-shadow 0.18s;
+}
+
+.source-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgb(58 47 38 / 18%);
+}
+
+.source-card__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* 有章的卡给头部留出章位 */
+.source-card:has(.stamp) .source-card__head {
+  padding-inline-end: 72px;
 }
 
 .source-card__icon {
   display: grid;
+  flex: none;
   place-items: center;
   width: 42px;
   height: 42px;
@@ -750,7 +774,7 @@ img {
   filter: drop-shadow(0 1px 0 rgb(255 244 214 / 40%));
 }
 
-.source-card__head {
+.source-card__id {
   min-width: 0;
 }
 
@@ -781,11 +805,11 @@ img {
 }
 
 .source-card .stamp {
-  position: static;
-  flex: none;
-  justify-self: end;
+  position: absolute;
+  top: 12px;
+  right: 12px;
   font-size: 0.6rem;
-  transform: rotate(-4deg);
+  transform: rotate(-6deg);
 }
 
 /* ———— 功能抽屉 ———— */
@@ -1233,20 +1257,6 @@ img {
 
   .cabinet__drawers {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .source-card {
-    grid-template-columns: 46px minmax(0, 1fr);
-  }
-
-  .source-card__cov {
-    grid-column: 2;
-  }
-
-  .source-card .stamp {
-    position: absolute;
-    top: 10px;
-    right: 12px;
   }
 
   .local__grid {

@@ -630,16 +630,22 @@ function renderTray(id) {
 function renderSources() {
   $("#source-index").innerHTML = AGENTS.map(
     (a) => `
-    <div class="source-card" style="--agent:${a.color}">
-      <span class="source-card__icon">${agentIcon(a)}</span>
+    <a class="source-card" href="#top" data-agent="${a.id}" style="--agent:${a.color}">
       <div class="source-card__head">
-        <span class="source-card__name">${agentName(a)}</span>
-        <span class="source-card__path">${a.path}</span>
+        <span class="source-card__icon">${agentIcon(a)}</span>
+        <div class="source-card__id">
+          <span class="source-card__name">${agentName(a)}</span>
+          <span class="source-card__path">${a.path}</span>
+        </div>
       </div>
       <p class="source-card__cov">${a.cov[state.lang]}</p>
       ${a.readonly ? `<span class="stamp">${t("stamp.readonly")}</span>` : ""}
-    </div>`
+    </a>`
   ).join("");
+  // 点卡片即拉开柜体对应抽屉，锚点 #top 负责平滑滚回柜体
+  document.querySelectorAll(".source-card").forEach((card) =>
+    card.addEventListener("click", () => selectAgent(card.dataset.agent))
+  );
 }
 
 /* ———— 功能抽屉 ———— */
