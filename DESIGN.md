@@ -40,7 +40,7 @@ One authored moment: the hero drawer opens and its cards deal in (staggered tran
 
 ## Layout
 
-Single column, max ~1180px. Sequence: cabinet-rail nav → hero (pitch + cabinet with working drawers) → source index cards (10 agents, real paths/coverage, stamps) → feature drawers → local-first proof ("卡片不出柜子") → circulation desk (download cards w/ real release assets) → footer. Download CTA present in hero, sticky-ish context, and final section.
+Single column, max ~1180px. Sequence: cabinet-rail nav → hero (pitch + cabinet with working drawers) → source index cards (one card per source, real paths/coverage, stamps) → features → local-first proof ("数据不出这台机器") → download (cards w/ real release assets) → footer. Download CTA present in hero, sticky-ish context, and final section.
 
 ## Bilingual
 

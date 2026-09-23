@@ -20,7 +20,7 @@ AllSessions is a local-first Tauri 2 desktop app that discovers, normalizes, sea
 
 ## Positioning
 
-The only unified, fully local session browser across twelve local sources in eleven agent ecosystems. Session discovery, parsing, trigram full-text search, and caching run in Rust on-device; no local HTTP server, no cloud service, no bundled Node runtime. Neighboring tools are single-agent viewers or cloud-backed dashboards — none can truthfully claim this combination of multi-source coverage and local-first privacy.
+The only unified, fully local session browser across every supported local source and agent ecosystem. Session discovery, parsing, trigram full-text search, and caching run in Rust on-device; no local HTTP server, no cloud service, no bundled Node runtime. Neighboring tools are single-agent viewers or cloud-backed dashboards — none can truthfully claim this combination of multi-source coverage and local-first privacy.
 
 ## Operating Context
 
@@ -31,7 +31,7 @@ The only unified, fully local session browser across twelve local sources in ele
 
 ## Capabilities and Constraints
 
-- Unified session browsing across 10 sources; normalized conversations, thinking, tool calls, raw events.
+- Unified session browsing across every supported source; normalized conversations, thinking, tool calls, raw events.
 - Local SQLite trigram full-text search; bounded memory windows for long sessions.
 - Favorites, tags, notes, saved filters, statistics, JSON/Markdown export with optional redaction.
 - Desktop integration: reveal in file manager, open terminal in working directory, resume session in the source agent (Cursor/Devin read-only).

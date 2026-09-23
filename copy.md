@@ -11,7 +11,7 @@
 - 按钮文案：Download for macOS (Apple Silicon / Intel) / Windows x64 / Linux .deb
 
 ## 特性（对应 README Features）
-1. Unified multi-agent sessions — 统一浏览十个来源，按来源/Provider/日期/项目/目录筛选；规范化对话、thinking、工具调用、原始事件
+1. Unified multi-agent sessions — 统一浏览所有支持的来源，按来源/Provider/日期/项目/目录筛选；规范化对话、thinking、工具调用、原始事件
 2. Full-text search — SQLite trigram 索引，多词 AND，命中片段跳转；索引完全在本地
 3. Organize & statistics — 收藏/标签/备注/保存筛选/归档/按来源统计对比/批量导出 JSON|Markdown（可选脱敏）
 4. Desktop integration — 文件管理器定位、终端打开工作目录、回原 Agent 恢复会话、五套主题、深浅色、快捷键

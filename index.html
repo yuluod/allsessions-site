@@ -51,7 +51,7 @@
         "@type": "SoftwareApplication",
         "name": "AllSessions",
         "url": "https://allsessions.airtools.tools/",
-        "description": "Local-first desktop app that indexes, searches, and organizes AI coding-agent sessions from twelve local sources.",
+        "description": "Local-first desktop app that indexes, searches, and organizes local AI coding-agent sessions.",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": ["Windows", "macOS", "Linux"],
         "downloadUrl": "https://github.com/yuluod/AllSessions/releases",
@@ -68,7 +68,7 @@
       </a>
       <nav class="rail__nav" aria-label="Sections" data-i18n-aria="aria.sections">
         <a href="#sources" data-i18n="nav.sources">来源索引</a>
-        <a href="#features" data-i18n="nav.features">功能抽屉</a>
+        <a href="#features" data-i18n="nav.features">功能</a>
         <a href="#local" data-i18n="nav.local">本地优先</a>
         <a href="#download" data-i18n="nav.download">下载</a>
       </nav>
@@ -94,8 +94,8 @@
     <main id="top">
       <noscript>
         <p class="noscript-note">
-          来源索引与功能抽屉需要启用 JavaScript；下方下载链接仍然可用。The source index and
-          feature drawers need JavaScript. The download links below still work.
+          来源索引与功能需要启用 JavaScript；下方下载链接仍然可用。The source index and
+          features need JavaScript. The download links below still work.
         </p>
       </noscript>
       <section class="hero">
@@ -128,7 +128,7 @@
             <span class="cabinet__plate-text">ALL SESSIONS · LOCAL INDEX</span>
             <span class="cabinet__plate-ver" id="plate-version">v—</span>
           </div>
-          <div id="drawer-grid" class="cabinet__drawers" role="tablist"></div>
+          <div id="drawer-grid" class="cabinet__drawers" role="tablist" aria-label="会话来源" data-i18n-aria="aria.sources"></div>
           <div class="cabinet__tray" id="card-tray" role="tabpanel">
             <div class="tray__head">
               <span class="tray__label">
@@ -160,7 +160,7 @@
       </section>
 
       <section class="section" id="features">
-        <div class="section__plate"><span data-i18n="features.title">功能抽屉</span></div>
+        <div class="section__plate"><span data-i18n="features.title">功能</span></div>
         <div id="feature-drawers" class="feature-drawers"></div>
       </section>
 
@@ -201,7 +201,7 @@
       </section>
 
       <section class="section section--desk" id="download">
-        <div class="section__plate"><span data-i18n="desk.title">流通台 · 取卡处</span></div>
+        <div class="section__plate"><span data-i18n="desk.title">下载</span></div>
         <p class="section__intro">
           <span data-i18n="desk.intro">当前版本</span>
           <strong class="desk__ver" id="desk-version">v—</strong>

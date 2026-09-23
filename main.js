@@ -387,7 +387,7 @@ const FEATURES = [
 const I18N = {
   zh: {
     "nav.sources": "来源索引",
-    "nav.features": "功能抽屉",
+    "nav.features": "功能",
     "nav.local": "本地优先",
     "nav.download": "下载",
     "nav.github": "GitHub",
@@ -408,6 +408,7 @@ const I18N = {
     "aria.sections": "页面分区",
     "aria.cabinet": "会话目录柜演示",
     "aria.projectLinks": "项目链接",
+    "aria.sources": "会话来源",
     "tray.search": "搜索…",
     "tray.demo": "演示",
     "tray.msgs": "{n} 条消息",
@@ -417,7 +418,7 @@ const I18N = {
       "下面 {n} 张卡，一张对一个来源：读哪个目录、能解析出什么，照实写。盖了只读章的，原始数据一个字节都不会动。",
     "sources.note":
       "只读来源的原始数据永不被修改；「本地移除」只在 AllSessions 内生效，删除原件请回到对应 Agent。",
-    "features.title": "功能抽屉",
+    "features.title": "功能",
     "local.title": "本地优先",
     "local.heading": "数据不出这台机器。",
     "local.stamp": "LOCAL ONLY",
@@ -431,7 +432,7 @@ const I18N = {
     "local.indexPath": "平台缓存目录 / AllSessions",
     "local.net": "网络请求",
     "local.netValue": "0 — 检索与浏览不发出任何请求",
-    "desk.title": "流通台 · 取卡处",
+    "desk.title": "下载",
     "desk.intro": "当前版本",
     "desk.recommended": "你的平台",
     "desk.macNote": "尚未公证：首次启动请在「系统设置 → 隐私与安全性」中允许。",
@@ -472,6 +473,7 @@ const I18N = {
     "aria.sections": "Page sections",
     "aria.cabinet": "Session catalog cabinet demo",
     "aria.projectLinks": "Project links",
+    "aria.sources": "Session sources",
     "tray.search": "Search…",
     "tray.demo": "DEMO",
     "tray.msgs": "{n} msgs",
@@ -481,11 +483,11 @@ const I18N = {
       "The {n} cards below cover every source: the directory read and what gets parsed, exactly as shipped. Sources stamped read-only are never modified.",
     "sources.note":
       "Read-only sources are never modified on disk; local removal applies inside AllSessions only — delete originals in the agent itself.",
-    "features.title": "Feature drawers",
+    "features.title": "Features",
     "local.title": "Local-first",
     "local.heading": "Your data never leaves this machine.",
     "local.stamp": "LOCAL ONLY",
-    "local.f1": "Parsing, search, and caching all run in Rust on your machine; no local port is opened, and the UI never communicates over the network.",
+    "local.f1": "Parsing, search, and caching all run in Rust on your machine. No local port is opened, and the UI talks to the core over IPC, not the network.",
     "local.f2": "Full-text search is a local SQLite trigram index — the whole index lives on your disk.",
     "local.f3": "A local backup precedes any permanent deletion; read-only sources are never modified.",
     "local.f4": "Optional export redaction; copyable diagnostics contain no session content or paths.",
@@ -495,9 +497,9 @@ const I18N = {
     "local.indexPath": "Platform cache dir / AllSessions",
     "local.net": "Network calls",
     "local.netValue": "0 — browsing and search send nothing",
-    "desk.title": "Circulation desk",
+    "desk.title": "Download",
     "desk.intro": "Current version",
-    "desk.recommended": "YOURS",
+    "desk.recommended": "Your platform",
     "desk.macNote":
       "Not notarized yet: allow the app in System Settings → Privacy & Security on first launch.",
     "desk.winNote": "x64 · NSIS per-user install · signed auto-update",
@@ -520,6 +522,7 @@ const I18N = {
 const state = {
   lang: "zh",
   agent: "codex",
+  feature: FEATURES[0].key,
   platform: null,
   releaseStatus: "loading",
   assets: {},
@@ -682,14 +685,14 @@ function renderSources() {
   );
 }
 
-/* ———— 功能抽屉 ———— */
+/* ———— 功能 ———— */
 
 function renderFeatures() {
   $("#feature-drawers").innerHTML = FEATURES.map((f, i) => {
     const c = f[state.lang];
     return `
-    <div class="fdrawer${i === 0 ? " is-open" : ""}" style="--i:${i}">
-      <button class="fdrawer__front" type="button" aria-expanded="${i === 0}" aria-controls="ftray-${f.key}">
+    <div class="fdrawer${f.key === state.feature ? " is-open" : ""}" style="--i:${i}">
+      <button class="fdrawer__front" type="button" data-feature="${f.key}" aria-expanded="${f.key === state.feature}" aria-controls="ftray-${f.key}">
         <span class="fdrawer__frame">
           <span class="fdrawer__name">${c.name}</span>
           <span class="fdrawer__meta">
@@ -712,6 +715,7 @@ function renderFeatures() {
     btn.addEventListener("click", () => {
       const d = btn.closest(".fdrawer");
       const open = !d.classList.contains("is-open");
+      state.feature = open ? btn.dataset.feature : null;
       fronts.forEach((b) => {
         b.closest(".fdrawer").classList.remove("is-open");
         b.setAttribute("aria-expanded", "false");
@@ -809,7 +813,7 @@ async function fetchRelease() {
       /* 坏缓存按未命中处理 */
     }
   }
-  const res = await fetch(API_URL, { signal: AbortSignal.timeout(8000) });
+  const res = await fetch(API_URL, { signal: AbortSignal.timeout?.(8000) });
   if (!res.ok) throw new Error(String(res.status));
   const data = await res.json();
   storage.set(RELEASE_CACHE_KEY, JSON.stringify({ ts: Date.now(), data }), true);
@@ -818,6 +822,7 @@ async function fetchRelease() {
 
 async function loadRelease() {
   state.releaseStatus = "loading";
+  state.assets = {};
   updateDownloadUI();
   try {
     const data = await fetchRelease();
@@ -841,10 +846,7 @@ async function loadRelease() {
           `${(asset.size / 1048576).toFixed(1)} MB`;
       }
     }
-    const expectedAssets = ["mac-arm64", "mac-x64", "windows", "linux"];
-    if (!expectedAssets.every((key) => state.assets[key])) {
-      throw new Error("Release 缺少预期安装包");
-    }
+    if (!Object.keys(state.assets).length) throw new Error("Release 中没有匹配的安装包");
     state.releaseStatus = "ready";
   } catch (error) {
     $("#plate-version").textContent = "";
