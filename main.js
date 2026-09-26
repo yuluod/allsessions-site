@@ -875,6 +875,8 @@ function init() {
   renderFeatures();
   applyI18n();
   detectPlatform();
+  // 状态区默认 hidden——无 JS 的访客不该看到一句永远不会更新的「正在读取最新版本…」
+  $(".release-state").hidden = false;
   loadRelease();
 
   // 功能屉滚入视口才发牌；容器是静态节点，语言切换重渲染不影响 is-dealt

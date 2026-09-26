@@ -1184,6 +1184,11 @@ img {
   margin: -14px 0 24px;
 }
 
+/* display:flex 会盖掉 hidden 的 UA 样式；无 JS 时整个状态区不出现 */
+.release-state[hidden] {
+  display: none;
+}
+
 #release-status {
   margin: 0;
   color: var(--ink-soft);
