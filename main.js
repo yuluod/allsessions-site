@@ -99,12 +99,34 @@ const AGENTS = [
     },
   },
   {
+    id: "grok",
+    name: "Grok Build",
+    icon: null,
+    color: "#52525b",
+    path: "~/.grok/sessions",
+    readonly: true,
+    cov: {
+      zh: "updates.jsonl + summary.json；正文、思考、工具、回退过滤、检索、实时刷新与恢复；暂不汇总 Token/费用",
+      en: "updates.jsonl + summary.json; text, thinking, tools, rewind filtering, search, live refresh, resume; no token or cost totals yet",
+    },
+    cards: {
+      zh: [
+        ["10:18", "回退后重新整理工具调用", 18, "~/work/app"],
+        ["9月18日", "给本地会话补上全文检索", 24, "~/work/allsessions"],
+      ],
+      en: [
+        ["10:18", "rework tool calls after rewinding", 18, "~/work/app"],
+        ["Sep 18", "add full-text search for local sessions", 24, "~/work/allsessions"],
+      ],
+    },
+  },
+  {
     id: "pi",
     name: "Pi",
     icon: "assets/agents/pi.svg",
     color: "#7a4b85",
     path: "~/.pi/agent/sessions",
-    readonly: false,
+    readonly: true,
     cov: {
       zh: "从 v1–v3 JSONL 树重建分支；消息、思考、工具、摘要、原始事件、检索、实时刷新",
       en: "Branch rebuilt from v1–v3 JSONL trees; messages, thinking, tools, summaries, raw events, search, live refresh",
@@ -126,7 +148,7 @@ const AGENTS = [
     icon: "assets/agents/kimi.svg",
     color: "#176b72",
     path: "~/.kimi/sessions",
-    readonly: false,
+    readonly: true,
     cov: {
       zh: "wire.jsonl、工作目录、自定义标题、流式内容、子代理、工具、原始事件、检索与实时刷新",
       en: "wire.jsonl, working dirs, custom titles, streamed content, subagents, tools, raw events, search, live refresh",
@@ -580,7 +602,7 @@ function applyI18n() {
 function agentIcon(agent) {
   if (agent.icon)
     return `<img src="${agent.icon}" alt="" loading="lazy" />`;
-  // Copilot 与 Hermes 没有 lobe 图标，画一枚最小几何徽记
+  // 未提供专用图标的来源使用同一枚几何徽记。
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5.5"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3" stroke-linecap="round"/></svg>`;
 }
 

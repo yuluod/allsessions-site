@@ -2,7 +2,7 @@
 
 ## Hero
 - EN: "Every agent. One index." / sub: "{agents}: each agent writes its sessions to a different directory, in a different format. AllSessions reads them all into one desktop app. Browse, search, tag, and export — all on your machine, no port, no cloud."
-- ZH: "{n} 个来源，一个索引。"（n 与 {agents} 名单由来源表推导，当前 12 个）/ sub: "{agents}：每个 Agent 都把会话写进自己的目录，格式互不相同。AllSessions 把它们统统读出来，放进同一个桌面应用。翻旧会话、搜全文、打标签、做导出，都在本机完成，不开端口，不上云。"
+- ZH: "{n} 个来源，一个索引。"（n 与 {agents} 名单由来源表推导，当前 13 个，含 Codex 归档）/ sub: "{agents}：每个 Agent 都把会话写进自己的目录，格式互不相同。AllSessions 把它们统统读出来，放进同一个桌面应用。翻旧会话、搜全文、打标签、做导出，都在本机完成，不开端口，不上云。"
 - 定位词是「索引」不是「工作台」：查询、整理、导出在应用内完成，继续对话要跳回原 Agent——文案不承诺在应用里干活。
 
 ## 下载区
@@ -18,7 +18,8 @@
 5. Local-first — 无本地 HTTP 端口、无云端、Rust 端解析+索引；删除前自动本地备份；诊断信息可脱敏复制
 
 ## 只读边界（诚实区）
-- Cursor / Devin / OpenCode / ZCode / Copilot 为只读来源：AllSessions 绝不修改其原始数据
+- Grok Build / Pi / Kimi Code CLI / Cursor / Devin / OpenCode / ZCode / Copilot / Hermes Agent 为只读来源：AllSessions 绝不修改其原始数据
+- Grok Build 默认读取 `~/.grok/sessions` 下的 `updates.jsonl` 与 `summary.json`；支持正文、思考、工具、回退过滤、检索、实时刷新与恢复，暂不汇总 Token/费用
 - 独立社区项目声明（与所支持的 Agent 厂商无隶属关系）
 
 ## 页脚

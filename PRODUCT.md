@@ -12,7 +12,7 @@ Static HTML/CSS/JS, no framework, no build step. Deployed on GitHub Pages from i
 
 ## Users
 
-Developers who run several AI coding agents (Codex, Claude Code, Gemini CLI, Pi, Kimi Code CLI, OpenCode, ZCode, Cursor, Devin, GitHub Copilot) and lose track of where their past sessions live. Their situation: sessions scattered across agent-specific directories and formats; their job: find, inspect, organize, and export past agent sessions from one place. Bilingual audience — Chinese and English.
+Developers who run several AI coding agents (Codex, Claude Code, Gemini CLI, Grok Build, Pi, Kimi Code CLI, OpenCode, ZCode, Cursor, Devin, GitHub Copilot) and lose track of where their past sessions live. Their situation: sessions scattered across agent-specific directories and formats; their job: find, inspect, organize, and export past agent sessions from one place. Bilingual audience — Chinese and English.
 
 ## Product Purpose
 
@@ -36,6 +36,7 @@ The only unified, fully local session browser across every supported local sourc
 - Favorites, tags, notes, saved filters, statistics, JSON/Markdown export with optional redaction.
 - Desktop integration: reveal in file manager, open terminal in working directory, resume session in the source agent (Cursor/Devin read-only).
 - Strong privacy story: never modifies read-only sources; local backup before destructive ops; sanitized diagnostics.
+- Grok Build reads local `updates.jsonl` and `summary.json` under `~/.grok/sessions`; conversations, thinking, tools, rewind filtering, search, live refresh, and resume. Read-only source; no token or cost totals yet.
 - Independent community project — not affiliated with the supported agents' vendors. Names are used only to identify compatible data sources. This disclaimer must stay factual and visible.
 
 ## Brand Commitments
