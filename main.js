@@ -143,6 +143,28 @@ const AGENTS = [
     },
   },
   {
+    id: "omp",
+    name: "Oh My Pi",
+    icon: "assets/agents/omp.svg",
+    color: "#5e46b0",
+    path: "~/.omp/agent/sessions",
+    readonly: true,
+    cov: {
+      zh: "复用 Pi 解析读取 JSONL 会话；消息、思考、工具、原始事件、检索、实时刷新、终端恢复",
+      en: "JSONL sessions parsed via the Pi adapter; messages, thinking, tools, raw events, search, live refresh, resume",
+    },
+    cards: {
+      zh: [
+        ["12:03", "把 omp 会话接进统一索引", 33, "~/work/allsessions"],
+        ["10月20日", "恢复上次中断的重构会话", 21, "~/work/omp-demo"],
+      ],
+      en: [
+        ["12:03", "wire omp sessions into the index", 33, "~/work/allsessions"],
+        ["Oct 20", "resume the interrupted refactor", 21, "~/work/omp-demo"],
+      ],
+    },
+  },
+  {
     id: "kimi",
     name: "Kimi Code CLI",
     icon: "assets/agents/kimi.svg",
