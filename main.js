@@ -77,6 +77,28 @@ const AGENTS = [
     },
   },
   {
+    id: "claude-cowork",
+    name: "Claude Cowork",
+    icon: "assets/agents/claude.svg",
+    color: "#9a5314",
+    path: "~/Library/Application Support/Claude{,-3p}/local-agent-mode-sessions",
+    readonly: true,
+    cov: {
+      zh: "本地任务转录、思考、工具、任务标题与主机目录、检索及刷新；来源只读",
+      en: "Local task transcripts, thinking, tools, task titles and host folders, search, refresh; read-only",
+    },
+    cards: {
+      zh: [
+        ["11:12", "把这批截图整理成对比报告", 14, "~/Desktop/receipts"],
+        ["9月30日", "会议纪要排成周报初稿", 9, "~/docs/notes"],
+      ],
+      en: [
+        ["11:12", "turn these screenshots into a comparison", 14, "~/Desktop/receipts"],
+        ["Sep 30", "draft the weekly report from notes", 9, "~/docs/notes"],
+      ],
+    },
+  },
+  {
     id: "gemini",
     name: "Gemini CLI",
     icon: "assets/agents/gemini.svg",
@@ -209,6 +231,28 @@ const AGENTS = [
     },
   },
   {
+    id: "kilo",
+    name: "Kilo",
+    icon: "assets/agents/kilo.svg",
+    color: "#8a3d38",
+    path: "~/.local/share/kilo/kilo.db",
+    readonly: true,
+    cov: {
+      zh: "SQLite 直读；消息、思考、工具、子代理、原始事件、检索与 WAL 实时刷新",
+      en: "Reads SQLite directly; messages, thinking, tools, subagents, raw events, search, WAL live refresh",
+    },
+    cards: {
+      zh: [
+        ["15:47", "把 Kilo 的库并入同一份索引", 19, "~/work/allsessions"],
+        ["9月12日", "子代理会话在详情里怎么折叠", 11, "~/work/allsessions"],
+      ],
+      en: [
+        ["15:47", "fold the Kilo db into the index", 19, "~/work/allsessions"],
+        ["Sep 12", "how subagents collapse in details", 11, "~/work/allsessions"],
+      ],
+    },
+  },
+  {
     id: "zcode",
     name: "ZCode",
     icon: "assets/agents/zcode.png",
@@ -285,6 +329,30 @@ const AGENTS = [
     },
   },
   {
+    id: "vscode-copilot",
+    name: "VS Code Copilot Chat",
+    icon: null,
+    color: "#4a4f57",
+    path: "…/Code/User · Code - Insiders/User",
+    readonly: true,
+    // 附属来源：同一 GitHub Copilot Agent 的 IDE 侧目录
+    variant: true,
+    cov: {
+      zh: "面板会话（平铺 .json 与 .jsonl 追加日志）；消息、思考、工具、自定义标题、检索、实时刷新；空会话不入列；来源只读",
+      en: "Panel sessions (flat .json and .jsonl append logs); messages, thinking, tools, custom titles, search, live refresh; empty placeholders excluded; read-only",
+    },
+    cards: {
+      zh: [
+        ["16:05", "面板会话的 .jsonl 回放写完", 22, "~/work/allsessions"],
+        ["9月28日", "空占位会话过滤掉", 6, "~/work/allsessions"],
+      ],
+      en: [
+        ["16:05", "replay .jsonl panel sessions", 22, "~/work/allsessions"],
+        ["Sep 28", "filter empty placeholder sessions", 6, "~/work/allsessions"],
+      ],
+    },
+  },
+  {
     id: "hermes",
     name: "Hermes Agent",
     icon: null,
@@ -303,6 +371,28 @@ const AGENTS = [
       en: [
         ["13:24", "profile WAL checkpoint stutters", 36, "~/work/allsessions"],
         ["Sep 10", "split resume parsing into a skill", 25, "~/work/resume-tools"],
+      ],
+    },
+  },
+  {
+    id: "deepseek",
+    name: "DeepSeek Harness",
+    icon: "assets/agents/deepseek.svg",
+    color: "#3a5a9a",
+    path: "~/.dsh/sessions",
+    readonly: true,
+    cov: {
+      zh: "每会话多帧 zstd / JSONL 事件日志，只读最新一代；消息、思考、工具、标题、Token 用量、原始事件、实时刷新",
+      en: "Per-session multi-frame zstd / JSONL event logs, newest generation only; messages, thinking, tools, titles, token usage, raw events, live refresh",
+    },
+    cards: {
+      zh: [
+        ["10:12", "zstd 多帧魔数识别联调", 29, "~/work/allsessions"],
+        ["9月19日", "注入上下文归约成合成消息", 15, "~/work/allsessions"],
+      ],
+      en: [
+        ["10:12", "wire up zstd multiframe magic", 29, "~/work/allsessions"],
+        ["Sep 19", "reduce injected context synthetically", 15, "~/work/allsessions"],
       ],
     },
   },
@@ -389,7 +479,7 @@ const FEATURES = [
         "在文件管理器中定位会话源文件或项目目录",
         "在会话工作目录里直接打开系统终端",
         "回到对应 Agent 恢复会话继续对话",
-        "五套主题、明暗配色、全键盘快捷键",
+        "六套主题、明暗配色、全键盘快捷键",
       ],
     },
     en: {
@@ -399,7 +489,7 @@ const FEATURES = [
         "Reveal a session file or project directory in the file manager",
         "Open a system terminal in the session's working directory",
         "Resume the session in its original agent",
-        "Five themes, light/dark schemes, full keyboard shortcuts",
+        "Six themes, light/dark schemes, full keyboard shortcuts",
       ],
     },
   },

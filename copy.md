@@ -2,7 +2,7 @@
 
 ## Hero
 - EN: "Every agent. One index." / sub: "{agents}: each agent writes its sessions to a different directory, in a different format. AllSessions reads them all into one desktop app. Browse, search, tag, and export — all on your machine, no port, no cloud."
-- ZH: "{n} 个来源，一个索引。"（n 与 {agents} 名单由来源表推导，当前 14 个，含 Codex 归档）/ sub: "{agents}：每个 Agent 都把会话写进自己的目录，格式互不相同。AllSessions 把它们统统读出来，放进同一个桌面应用。翻旧会话、搜全文、打标签、做导出，都在本机完成，不开端口，不上云。"
+- ZH: "{n} 个来源，一个索引。"（n 与 {agents} 名单由来源表推导，当前 18 个，含 Codex 归档与 VS Code Copilot Chat 附属来源）/ sub: "{agents}：每个 Agent 都把会话写进自己的目录，格式互不相同。AllSessions 把它们统统读出来，放进同一个桌面应用。翻旧会话、搜全文、打标签、做导出，都在本机完成，不开端口，不上云。"
 - 定位词是「索引」不是「工作台」：查询、整理、导出在应用内完成，继续对话要跳回原 Agent——文案不承诺在应用里干活。
 
 ## 下载区
