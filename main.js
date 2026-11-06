@@ -396,6 +396,28 @@ const AGENTS = [
       ],
     },
   },
+  {
+    id: "jetbrains-air",
+    name: "JetBrains Air",
+    icon: "assets/agents/jetbrains.svg",
+    color: "#fe2857",
+    path: "~/Library/Caches/JetBrains/<产品>/acp · %LOCALAPPDATA%\\JetBrains\\<产品>\\acp",
+    readonly: true,
+    cov: {
+      zh: "JetBrains IDE 持久化的 ACP 线程 events.jsonl 回放；消息、思考、工具调用与结果、逐轮 Token 用量、图片附件、原始事件；空线程不入列；来源只读",
+      en: "ACP thread events.jsonl persisted by JetBrains IDEs; messages, thinking, tool calls and results, per-turn token usage, image attachments, raw events; empty threads excluded; read-only",
+    },
+    cards: {
+      zh: [
+        ["14:02", "ACP 线程的事件回放对一遍", 31, "~/IdeaProjects/air-tools"],
+        ["11月3日", "IDE 里的 agent 会话导一版", 12, "~/IdeaProjects/demo"],
+      ],
+      en: [
+        ["14:02", "diff the ACP thread replay", 31, "~/IdeaProjects/air-tools"],
+        ["Nov 3", "export agent threads from the IDE", 12, "~/IdeaProjects/demo"],
+      ],
+    },
+  },
 ];
 
 const FEATURES = [
